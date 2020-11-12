@@ -18,6 +18,7 @@
         </tr>
     </table>
     <script>
+        
         function displayContent(content) {
             content.forEach(function (data) {
                 var table = document.getElementById("table");
@@ -26,7 +27,7 @@
                     '<tr>' + 
                         '<td>' + data.id + '</td>' +
                         '<td>' + data.title + '</td>' +
-                        '<td><a href="https://jsonplaceholder.typicode.com/posts/">Fiche</a></td>' +
+                        '<td><a href="https://jsonplaceholder.typicode.com/posts/'+ data.id +'">Fiche</a></td>' +
                     '</tr>';
             });
         }
