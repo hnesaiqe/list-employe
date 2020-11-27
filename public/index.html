@@ -10,12 +10,19 @@
 
 <body>
     <h1>Employées</h1>
+        <button class="addPost" onclick="addPost()"> Ajouter un poste </button>
+
     <table id="table">
         <tr>
             <th>Id</th>
             <th>Title</th>
             <th> </th>
+            <!-- <th>Supprimer</th>
+            <th>Ajouter</th> -->
         </tr>
+
+
+
     </table>
     <script>
         
@@ -27,7 +34,8 @@
                     '<tr>' + 
                         '<td>' + data.id + '</td>' +
                         '<td>' + data.title + '</td>' +
-                        '<td><a href="https://jsonplaceholder.typicode.com/posts/'+ data.id +'">Fiche</a></td>' +
+                        '<td><a href="https://jsonplaceholder.typicode.com/posts/'+ data.id +'">Afficher</a></td>' +
+                        '<td><button  class="supLine"> - </button></td>' +
                     '</tr>';
             });
         }
@@ -40,49 +48,20 @@
         };
         xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
         xhttp.send();
-
-
-        // var oReq = new XMLHttpRequest();
-        // oReq.open("GET","https:jsonplaceholder.typicode.com/posts, true");
-        // // récupérer les données non traitées comme une chaîne binaire
-        // oReq.overrideMimeType("text/plain; charset=x-user-defined");
-        // /* ... */
-
-
-
-        // function loadDoc() {
-        //   var xhttp = new XMLHttpRequest();
-        //   xhttp.onreadystatechange = function() {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //      document.getElementById("demo").innerHTML = this.responseText;
-        //     }
-        //   };
-        //   xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
-        //   xhttp.send();
-        // }
-        // const click = (event) => {
-        //             event.preventDefault();
-        //             window.open
-        //         }
-        //         console.log(click.event)
-        //         var xhttp = new XMLHttpRequest();
-        //         // Chercher avec la method GET dans l'API les data en JSON
-        //         xhttp.onreadystatechange = function () {
-        //             if (this.readyState == 4 && this.status == 200) {
-        //                 loadDoc(JSON.parse(this.responseText));
-        //             }
-        //         };
-        //         xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts");
-        //         xhttp.send();
-        // Afficher les element HTML ainsi que les valeurs de api
-        // function loadDoc(posts) {
-        //     posts.forEach(post => {
-        //         document.getElementById('posts').innerHTML += `
-        //             <p>${post.userId}</p>
-        //             <li>${post.title}</li>
-        //         `;
-        //     });
-        // }
+        
+        $(document).ready(function () {
+            $(".addPost").click(function () {
+                table.innerHTML +=
+                    '<tr>' + 
+                        '<td>' + data.id + '</td>' +
+                        '<td>' + data.title + '</td>' +
+                        '<td><a href="https://jsonplaceholder.typicode.com/posts/'+ data.id +'">Afficher</a></td>' +
+                        '<td><button  class="supLine"> - </button></td>' +
+                    '</tr>';
+                
+            });
+        }
+        
     </script>
 
 
