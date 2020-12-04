@@ -6,63 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employés</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <h1>Employées</h1>
-        <button class="addPost" onclick="addPost()"> Ajouter un poste </button>
+    <div class="container">
+        <h1>Employées</h1>
+        <!-- Ajouter Post -->
+        <form>
+            <label class="add_label"><b>userId:</b></label>
+            <input type="number" class="add_input" id="new_userId" name="new_userId" value="">
+            <br>
+            <label class="add_label"><b>title:</b></label>
+            <input type="text" class="add_input" id="new_title" name="new_title" value="">
+            <br>
+            <label class="add_label"><b>body:</b></label>
+            <input type="text" class="add_input" id="new_body" name="new_body" value="">
 
-    <table id="table">
-        <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th> </th>
-            <!-- <th>Supprimer</th>
-            <th>Ajouter</th> -->
-        </tr>
+            <button id="add_btn2" onclick="New(event)">Submit</button>
+        </form>
+</body>
+<hr>
+<!-- Tableau des Postes -->
 
+<table id="table">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th> </th>
+    </tr>
+</table>
+</div>
+<script>
+    function displayContent(content) {
+        content.forEach(function (data) {
+            var table = document.getElementById("table");
 
-
-    </table>
-    <script>
-        
-        function displayContent(content) {
-            content.forEach(function (data) {
-                var table = document.getElementById("table");
-
-                table.innerHTML +=
-                    '<tr>' + 
-                        '<td>' + data.id + '</td>' +
-                        '<td>' + data.title + '</td>' +
-                        '<td><a href="https://jsonplaceholder.typicode.com/posts/'+ data.id +'">Afficher</a></td>' +
-                        '<td><button  class="supLine"> - </button></td>' +
-                    '</tr>';
-            });
-        }
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                displayContent(JSON.parse(this.responseText));
-            }
-        };
-        xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
-        xhttp.send();
-        
-        $(document).ready(function () {
-            $(".addPost").click(function () {
-                table.innerHTML +=
-                    '<tr>' + 
-                        '<td>' + data.id + '</td>' +
-                        '<td>' + data.title + '</td>' +
-                        '<td><a href="https://jsonplaceholder.typicode.com/posts/'+ data.id +'">Afficher</a></td>' +
-                        '<td><button  class="supLine"> - </button></td>' +
-                    '</tr>';
-                
-            })
+            table.innerHTML +=
+                '<tr>' +
+                '<td>' + data.id + '</td>' +
+                '<td>' + data.title + '</td>' +
+                '<td><a href="https://jsonplaceholder.typicode.com/posts/' + data.id + '">Afficher</a></td>' +
+                '<td><button  class="supLine"> - </button></td>' +
+                '</tr>';
         });
-        
-    </script>
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            displayContent(JSON.parse(this.responseText));
+        }
+    };
+    xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
+    xhttp.send();
+
+    $(document).ready(function () {
+        $(".addPost").click(function () {
+            table.innerHTML +=
+                '<tr id="row ' + data.id + ' ">' +
+                '<td>' + data.id + '</td>' +
+                '<td>' + data.title + '</td>' +
+                '<td><a href="https://jsonplaceholder.typicode.com/posts/' + data.id +
+                '">Afficher</a></td>' +
+                '<td><button  class="supLine" onclick="supData( ' + data.id + ')"> - </button></td>' +
+                '</tr>';
+
+        })
+    });
+
+    // Ajouter post
+
+    function New(post) {
+        post.preventDefault()
+        var userid = document.getElementById("new_userId").value;
+        var new_title = document.getElementById("new_title").value;
+        var new_body = document.getElementById("new_body").value;
+
+        console.log("Input Data: " + userid + " " + new_title + " " + new_body);
+
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify({
+                    userId: userid,
+                    title: new_title,
+                    body: new_body
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log('response: ' + JSON.stringify(json));
+            })
+    }
+    
+    // Supprimer
+    function supData(lineSup) {
+        return $("#rowLineSup").remove();
+    }
+</script>
 
 
 </body>
