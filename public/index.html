@@ -26,6 +26,7 @@
 
             <button id="add_btn2" onclick="New(event)">Submit</button>
         </form>
+    </div>
 </body>
 <hr>
 <!-- Tableau des Postes -->
@@ -34,7 +35,7 @@
     <tr>
         <th>Id</th>
         <th>Title</th>
-        <th> </th>
+        <th>Afficher</th>
     </tr>
 </table>
 </div>
@@ -44,11 +45,11 @@
             var table = document.getElementById("table");
 
             table.innerHTML +=
-                '<tr>' +
+                '<tr id="row ' + data.id + ' ">' +
                 '<td>' + data.id + '</td>' +
                 '<td>' + data.title + '</td>' +
-                '<td><a href="https://jsonplaceholder.typicode.com/posts/' + data.id + '">Afficher</a></td>' +
-                '<td><button  class="supLine"> - </button></td>' +
+                '<td><a href="https://jsonplaceholder.typicode.com/posts/' + data.id + '">Post</a></td>' +
+                '<td><button type="button" class="supLine"> - </button></td>' +
                 '</tr>';
         });
     }
@@ -102,11 +103,24 @@
                 console.log('response: ' + JSON.stringify(json));
             })
     }
-    
+
     // Supprimer
-    function supData(lineSup) {
-        return $("#rowLineSup").remove();
-    }
+
+    //     $( "button" ).click(function() {
+    //   $( "tr" ).remove();
+    // });
+
+    $(".supLine").click(function () {
+        $("#row").remove();
+    });
+
+    // $( ".supLine" ).click(function() {
+    //  $( "#rowLineSup" ).remove();
+    // });
+
+    // function supData(lineSup) {
+    //     return $("#rowLineSup").remove();
+    // }
 </script>
 
 
