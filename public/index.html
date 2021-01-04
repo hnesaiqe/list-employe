@@ -16,7 +16,7 @@
         <!-- Ajouter Post -->
         <form>
             <label class="add_label"><b>userId:</b></label>
-            <input type="number" class="add_input" id="new_userId" name="new_userId" value="">
+            <input type="number" class="add_input" id="newUserId" name="newUserId" value="">
             <br>
             <label class="add_label"><b>title:</b></label>
             <input type="text" class="add_input" id="new_title" name="new_title" value="">
@@ -81,7 +81,7 @@
 
     function New(post) {
         post.preventDefault()
-        var userid = document.getElementById("new_userId").value;
+        var userid = document.getElementById("newUserId").value;
         var new_title = document.getElementById("new_title").value;
         var new_body = document.getElementById("new_body").value;
 
