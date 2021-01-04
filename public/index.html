@@ -19,7 +19,7 @@
             <input type="number" class="add_input" id="newUserId" name="newUserId" value="">
             <br>
             <label class="add_label"><b>title:</b></label>
-            <input type="text" class="add_input" id="new_title" name="new_title" value="">
+            <input type="text" class="add_input" id="newTitle" name="newTitle" value="">
             <br>
             <label class="add_label"><b>body:</b></label>
             <input type="text" class="add_input" id="new_body" name="new_body" value="">
@@ -82,16 +82,16 @@
     function New(post) {
         post.preventDefault()
         var userid = document.getElementById("newUserId").value;
-        var new_title = document.getElementById("new_title").value;
+        var newTitle = document.getElementById("newTitle").value;
         var new_body = document.getElementById("new_body").value;
 
-        console.log("Input Data: " + userid + " " + new_title + " " + new_body);
+        console.log("Input Data: " + userid + " " + newTitle + " " + new_body);
 
         fetch('https://jsonplaceholder.typicode.com/posts', {
                 method: 'POST',
                 body: JSON.stringify({
                     userId: userid,
-                    title: new_title,
+                    title: newTitle,
                     body: new_body
                 }),
                 headers: {
