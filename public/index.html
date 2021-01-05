@@ -116,13 +116,13 @@
 
         if (ans) {
             $.ajax({
-                url: 'https://jsonplaceholder.typicode.com/posts("supLine")',
+                url: 'https://jsonplaceholder.typicode.com/posts/'+ ID,
                 data: JSON.stringify({
                     ID: ID
                 }),
                 async: true,
                 cache: false,
-                type: "Post",
+                type: "Delete",
                 contentType: "application/json;charset=UTF-8",
                 dataType: "json",
                 success: function (result) {
@@ -139,6 +139,9 @@
             });
         }
     }
+    function myFunction() {
+  document.getElementById("#row").deleteRow(0);
+}
 
     // $(document).ready(function () {
     //     $(".supLine").click(function () {
