@@ -103,10 +103,20 @@
 
     function addLine(post) {
         var newTable = document.getElementById("table");
-        var row = newTable.insertRow(0);
+        var row = newTable.insertRow(1);
         var userId = row.insertCell(0);
         var newTitle= row.insertCell(1);
-        userId.innerHTML = "NEW CELL1";
+        var newBody= row.insertCell(1);
+        // table.innerHTML +=
+        //         '<tr id="row ' + data.id + ' ">' +
+        //         '<td>' + data.id + '</td>' +
+        //         '<td>' + data.title + '</td>' +
+        //         '<td><a href="https://jsonplaceholder.typicode.com/posts/' + data.id +
+        //         '">Afficher</a></td>' +
+        //         '<td><button class="supLine" onclick="supData( ' + data.id +
+        //         ')"> &mdash; </button></td>' +
+        //         '</tr>';
+        userId.innerHTML = '+ data.id +';
         newTitle.innerHTML = "NEW CELL2";
     }
 
